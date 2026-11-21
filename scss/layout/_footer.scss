@@ -1,0 +1,51 @@
+// =============================================================================
+// PARTIAL: scss/layout/_footer.scss
+// =============================================================================
+// Pie de página global con textura de circuito tecnológico (assets/footer-circuit.jpg),
+// marca, copyright y enlaces sociales. Responsivo con Flexbox mobile-first.
+// =============================================================================
+
+@use '../utilities/variables' as v;
+@use '../utilities/mixins' as m;
+
+.main-footer {
+  background-color: v.$color-footer-bg;
+  background-image:
+    linear-gradient(to top, rgba(v.$color-bg-base, 0.94), rgba(v.$color-bg-base, 0.86)),
+    url('../assets/footer-circuit.jpg');
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-top: 1px solid rgba(v.$color-primary, 0.5);
+  padding: 1.65rem 1rem;
+  margin-top: auto;
+
+  .footer-inner {
+    width: 100%;
+    max-width: v.$container-max;
+    margin-inline: auto;
+    @include m.flex-layout(column, center, center, 1rem);
+    text-align: center;
+
+    @include m.respond-up('md') {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+      padding-inline: 1rem;
+    }
+  }
+}
+
+.footer-brand {
+  @include m.flex-layout(row, center, center, 0.7rem);
+  text-decoration: none;
+  color: v.$color-text-main;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+.copyright-text {
+  font-size: 0.88rem;
+  color: v.$color-text-muted;
+  margin: 0;
+}

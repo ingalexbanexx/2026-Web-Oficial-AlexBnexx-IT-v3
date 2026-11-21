@@ -1,0 +1,73 @@
+// =============================================================================
+// PARTIAL: scss/layout/_projects.scss
+// =============================================================================
+// Grilla asimétrica de proyectos destacados usando CSS Grid y
+// grid-template-areas para destacar el proyecto principal junto a los casos
+// institucionales y educativos del CV.
+// =============================================================================
+
+@use '../utilities/variables' as v;
+@use '../utilities/mixins' as m;
+
+.projects-grid-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'feat'
+    'card1'
+    'card2'
+    'card3'
+    'card4';
+  gap: 1.35rem;
+
+  @include m.respond-up('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      'feat  feat'
+      'card1 card2'
+      'card3 card4';
+    gap: 1.5rem;
+  }
+
+  @include m.respond-up('lg') {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    grid-template-areas:
+      'feat card1'
+      'feat card2'
+      'card3 card4';
+    gap: 1.65rem;
+  }
+}
+
+.project-area-feat {
+  grid-area: feat;
+
+  .project-thumb {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: v.$radius-sm;
+    margin-bottom: 1.1rem;
+    border: 1px solid v.$color-border;
+
+    @include m.respond-up('lg') {
+      height: 260px;
+    }
+  }
+}
+
+.project-area-card1 {
+  grid-area: card1;
+}
+
+.project-area-card2 {
+  grid-area: card2;
+}
+
+.project-area-card3 {
+  grid-area: card3;
+}
+
+.project-area-card4 {
+  grid-area: card4;
+}

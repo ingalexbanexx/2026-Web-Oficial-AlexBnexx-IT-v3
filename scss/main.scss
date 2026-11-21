@@ -1,0 +1,39 @@
+// =============================================================================
+// ARCHIVO PRINCIPAL: scss/main.scss
+// =============================================================================
+// Punto de entrada único para compilar los estilos del portafolio Alexbanexx.
+// REGLA ESTRICTA (Módulo 11 - Proyecto Final):
+// Este archivo contiene EXCLUSIVAMENTE directivas @use para importar partials.
+// No se escribe ninguna regla CSS directamente aquí.
+// El orden de importación respeta la cascada:
+// 1. Utilidades -> 2. Base -> 3. Componentes -> 4. Layout
+// =============================================================================
+
+// 1. Utilidades (variables, mixins con parámetros y placeholders para @extend)
+@use 'utilities/variables';
+@use 'utilities/mixins';
+@use 'utilities/placeholders';
+
+// 2. Estilos Base (reset, reglas globales y escala tipográfica)
+@use 'base/reset';
+@use 'base/base';
+@use 'base/typography';
+
+// 3. Componentes reutilizables (sobrescribiendo Bootstrap de forma armónica)
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/carousel';
+@use 'components/forms';
+@use 'components/modals';
+@use 'components/social';
+@use 'components/animations';
+
+// 4. Layout y estructura de páginas (Grid, Flexbox y Media Queries)
+@use 'layout/header';
+@use 'layout/nav';
+@use 'layout/section';
+@use 'layout/hero';
+@use 'layout/hub';
+@use 'layout/projects';
+@use 'layout/contact';
+@use 'layout/footer';

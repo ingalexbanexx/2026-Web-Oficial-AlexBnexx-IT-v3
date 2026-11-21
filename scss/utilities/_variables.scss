@@ -1,0 +1,59 @@
+// =============================================================================
+// PARTIAL: scss/utilities/_variables.scss
+// =============================================================================
+// Centraliza todos los tokens de diseño (colores, tipografías, radios,
+// espaciados y breakpoints) siguiendo una distribución cromática 60-30-10.
+// =============================================================================
+
+// --- Paleta Cromática (60% Base Oscura / 30% Superficies / 10% Acento) ---
+$color-bg-base: #080d16;           // Fondo principal del sitio (60%)
+$color-footer-bg: #050911;         // Fondo profundo del pie de página
+$color-surface: #0f172a;           // Superficie de tarjetas y bloques (30%)
+$color-surface-elevated: #142038;  // Superficie en estado :hover o modal
+$color-border: #1e3150;            // Borde hairline estructural
+$color-border-subtle: rgba(148, 163, 184, 0.16);
+
+// Acento principal (10% - reservado a acciones, foco y estados activos)
+$color-primary: #00d8f5;           // Cian tecnológico de alto contraste
+$color-primary-light: #4ce8ff;     // Hover de botones y enlaces
+$color-primary-dark: #00a8c2;      // Estado :active
+$color-secondary: #2563eb;         // Azul cobalto institucional
+
+// Tipografía con contraste WCAG AA sobre fondo oscuro
+$color-text-main: #f1f5f9;         // Texto principal de alta legibilidad
+$color-text-body: #cbd5e1;         // Párrafos y descripciones
+$color-text-muted: #94a3b8;        // Metadatos secundarios y epígrafes
+
+// Estados semánticos (siempre acompañados de etiqueta de texto)
+$color-success: #10b981;
+$color-warning: #f59e0b;
+$color-error: #ef4444;
+
+// --- Familias Tipográficas (Regla 2 + 1: Display + Cuerpo + Monospace) ---
+$font-heading: 'Orbitron', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+// --- Escala de Espaciados y Radios ---
+$space-xs: 0.5rem;
+$space-sm: 1rem;
+$space-md: 1.5rem;
+$space-lg: 2.5rem;
+$space-xl: 3.5rem;
+
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 14px;
+
+// --- Contenedor y Transiciones ---
+$container-max: 1200px;
+$transition-fast: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+$transition-smooth: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+
+// --- Mapa de Breakpoints para Media Queries (Mobile-First) ---
+$breakpoints: (
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px
+);

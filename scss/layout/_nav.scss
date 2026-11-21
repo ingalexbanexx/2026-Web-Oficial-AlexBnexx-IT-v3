@@ -1,0 +1,110 @@
+// =============================================================================
+// PARTIAL: scss/layout/_nav.scss
+// =============================================================================
+// Estilado con nesting de los enlaces de navegación de la Navbar de Bootstrap.
+// Todos los enlaces son de una sola línea (white-space: nowrap) con subrayado
+// sutil en :hover y estado activo claramente identificable.
+// =============================================================================
+
+@use '../utilities/variables' as v;
+@use '../utilities/mixins' as m;
+
+.nav-list {
+  gap: 0.25rem;
+
+  @include m.respond-up('lg') {
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    position: relative;
+    color: v.$color-text-muted;
+    font-family: v.$font-body;
+    font-weight: 500;
+    font-size: 0.94rem;
+    padding: 0.55rem 0.85rem;
+    border-radius: v.$radius-sm;
+    white-space: nowrap;
+    @include m.transicion((color, background-color), 180ms);
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0.85rem;
+      right: 0.85rem;
+      bottom: 0.25rem;
+      height: 2px;
+      background-color: v.$color-primary;
+      transform: scaleX(0);
+      transform-origin: left center;
+      @include m.transicion((transform), 180ms);
+    }
+
+    &:hover {
+      color: v.$color-text-main;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &:focus-visible {
+      color: v.$color-text-main;
+      @include m.focus-ring(2px, 0.55);
+    }
+
+    &.nav-link-active {
+      color: v.$color-primary;
+      font-weight: 600;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    // Ícono Home con detalles neón cian
+    &.nav-home-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      height: 40px;
+      padding: 0.4rem 0.65rem;
+      color: v.$color-primary;
+      border: 1px solid rgba(v.$color-primary, 0.45);
+      background-color: rgba(v.$color-primary, 0.08);
+      box-shadow:
+        0 0 10px rgba(v.$color-primary, 0.28),
+        inset 0 0 8px rgba(v.$color-primary, 0.16);
+      @include m.transicion((color, background-color, border-color, box-shadow, transform), 180ms);
+
+      i {
+        font-size: 1.15rem;
+        line-height: 1;
+        filter: drop-shadow(0 0 6px rgba(v.$color-primary, 0.8));
+      }
+
+      &::after {
+        display: none;
+      }
+
+      &:hover,
+      &.nav-link-active {
+        color: v.$color-primary-light;
+        border-color: v.$color-primary;
+        background-color: rgba(v.$color-primary, 0.18);
+        box-shadow:
+          0 0 16px rgba(v.$color-primary, 0.55),
+          inset 0 0 10px rgba(v.$color-primary, 0.3);
+
+        i {
+          filter: drop-shadow(0 0 10px rgba(v.$color-primary-light, 0.95));
+        }
+      }
+
+      &:hover {
+        transform: translateY(-1px);
+      }
+    }
+  }
+}

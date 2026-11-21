@@ -1,0 +1,54 @@
+// =============================================================================
+// PARTIAL: scss/components/_buttons.scss
+// =============================================================================
+// Estilado de botones propios y sobrescritura de Bootstrap (.btn-primary,
+// .btn-outline-info) utilizando @extend %btn-base y el mixin parametrizado
+// button-variant($bg, $text, $border, $hover-bg, $hover-text).
+// =============================================================================
+
+@use '../utilities/variables' as v;
+@use '../utilities/mixins' as m;
+@use '../utilities/placeholders';
+
+.btn-primary.custom-btn,
+.custom-btn-primary {
+  @extend %btn-base;
+  @include m.button-variant(
+    v.$color-primary,
+    v.$color-bg-base,
+    v.$color-primary,
+    v.$color-primary-light,
+    v.$color-bg-base
+  );
+}
+
+.btn-outline-primary.custom-btn,
+.custom-btn-secondary {
+  @extend %btn-base;
+  @include m.button-variant(
+    transparent,
+    v.$color-primary,
+    rgba(v.$color-primary, 0.6),
+    rgba(v.$color-primary, 0.14),
+    v.$color-text-main
+  );
+}
+
+.hero-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 260px);
+  justify-content: center;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  margin-top: 1.5rem;
+
+  @include m.respond-up('sm') {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 195px));
+  }
+
+  .custom-btn {
+    width: 100%;
+    padding-inline: 1rem;
+  }
+}

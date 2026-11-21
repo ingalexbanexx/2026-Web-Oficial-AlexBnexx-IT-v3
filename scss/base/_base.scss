@@ -1,0 +1,77 @@
+// =============================================================================
+// PARTIAL: scss/base/_base.scss
+// =============================================================================
+// Estilos base del documento, fondo temático sutil y contenedor maestro.
+// =============================================================================
+
+@use '../utilities/variables' as v;
+@use '../utilities/mixins' as m;
+
+.site-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: v.$color-bg-base;
+  background-image:
+    radial-gradient(circle at 12% 0%, rgba(v.$color-secondary, 0.14), transparent 36%),
+    radial-gradient(circle at 88% 18%, rgba(v.$color-primary, 0.08), transparent 32%);
+  color: v.$color-text-main;
+  font-family: v.$font-body;
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Contenedor principal que respeta el ancho legible en desktop (1200px)
+.content-container {
+  width: 100%;
+  max-width: v.$container-max;
+  margin-inline: auto;
+  padding: v.$space-md v.$space-sm v.$space-xl;
+  flex: 1 0 auto;
+
+  @include m.respond-up('md') {
+    padding: v.$space-lg v.$space-md v.$space-xl;
+  }
+
+  @include m.respond-up('xl') {
+    padding-inline: 2rem;
+  }
+}
+
+// Enlaces de contenido y contacto directo
+.contact-link {
+  color: v.$color-primary;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  @include m.transicion((color, border-color), 180ms);
+
+  &:hover {
+    color: v.$color-primary-light;
+    border-bottom-color: v.$color-primary-light;
+  }
+
+  &:focus-visible {
+    @include m.focus-ring(2px, 0.6);
+    border-radius: 3px;
+  }
+}
+
+// Enlace accesible para saltar al contenido principal (teclado)
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0.75rem;
+  z-index: 2000;
+  background-color: v.$color-primary;
+  color: v.$color-bg-base;
+  padding: 0.6rem 1rem;
+  border-radius: v.$radius-sm;
+  font-weight: 700;
+  text-decoration: none;
+
+  &:focus {
+    left: 1rem;
+  }
+}

@@ -1,0 +1,43 @@
+// =============================================================================
+// PARTIAL: scss/layout/_hero.scss
+// =============================================================================
+// Hero split-screen adaptable: una columna en mobile y grilla balanceada en
+// desktop con align-items: stretch para igualar altura visual entre contenido
+// tipográfico y tarjeta multimedia.
+// =============================================================================
+
+@use '../utilities/variables' as v;
+@use '../utilities/mixins' as m;
+
+.hero-grid-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: center;
+
+  @include m.respond-up('lg') {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 2.5rem;
+    align-items: stretch;
+  }
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-media {
+  width: 100%;
+  min-height: 260px;
+
+  @include m.respond-up('lg') {
+    height: 100%;
+
+    .media-image {
+      flex: 1 1 auto;
+      height: 100%;
+    }
+  }
+}

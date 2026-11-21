@@ -1,0 +1,48 @@
+// =============================================================================
+// PARTIAL: scss/components/_social.scss
+// =============================================================================
+// Enlaces de redes profesionales (GitHub, LinkedIn, WhatsApp, Correo) con
+// área táctil accesible (>= 40px) y estados interactivos claros.
+// =============================================================================
+
+@use '../utilities/variables' as v;
+@use '../utilities/mixins' as m;
+
+.social-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  @include m.flex-layout(row, center, center, 0.55rem);
+}
+
+.social-item {
+  display: inline-flex;
+}
+
+.social-link {
+  @include m.flex-layout(row, center, center, 0);
+  width: 40px;
+  height: 40px;
+  border-radius: v.$radius-sm;
+  color: v.$color-text-muted;
+  background-color: rgba(v.$color-surface, 0.75);
+  border: 1px solid v.$color-border;
+  font-size: 1.05rem;
+  text-decoration: none;
+  @include m.transicion((color, border-color, background-color, transform), 180ms);
+
+  &:hover {
+    color: v.$color-primary;
+    border-color: v.$color-primary;
+    background-color: rgba(v.$color-primary, 0.12);
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    @include m.focus-ring(2px, 0.6);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

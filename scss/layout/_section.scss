@@ -1,0 +1,50 @@
+// =============================================================================
+// PARTIAL: scss/layout/_section.scss
+// =============================================================================
+// Ritmo vertical de secciones y grillas responsivas Mobile-First con CSS Grid
+// para tarjetas de servicios, experiencia laboral y formación académica.
+// =============================================================================
+
+@use '../utilities/variables' as v;
+@use '../utilities/mixins' as m;
+
+.section-block {
+  margin-bottom: v.$space-lg;
+
+  @include m.respond-up('lg') {
+    margin-bottom: v.$space-xl;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Grilla fluida de 1 -> 2 -> 3 columnas (pilares, especialidades, stack)
+.features-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+
+  @include m.respond-up('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  @include m.respond-up('lg') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.6rem;
+  }
+}
+
+// Grilla de 1 -> 2 columnas (experiencia profesional, formación y posgrados)
+.two-col-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+
+  @include m.respond-up('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}

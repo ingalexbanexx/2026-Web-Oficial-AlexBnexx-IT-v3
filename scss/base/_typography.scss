@@ -1,0 +1,121 @@
+// =============================================================================
+// PARTIAL: scss/base/_typography.scss
+// =============================================================================
+// Jerarquía tipográfica clara: Orbitron para títulos, Plus Jakarta Sans para
+// lectura fluida y JetBrains Mono con números tabulares para fechas/métricas.
+// =============================================================================
+
+@use '../utilities/variables' as v;
+@use '../utilities/mixins' as m;
+@use '../utilities/placeholders';
+
+.page-kicker {
+  font-family: v.$font-mono;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: v.$color-primary;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.65rem;
+  display: block;
+}
+
+.main-heading {
+  font-family: v.$font-heading;
+  font-size: clamp(1.75rem, 3.6vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: v.$color-text-main;
+  margin: 0 0 1rem;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+
+.section-heading {
+  @extend %section-heading-base;
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  margin: 0 0 v.$space-md;
+}
+
+.section-intro {
+  color: v.$color-text-body;
+  font-size: 1rem;
+  max-width: 72ch;
+  margin: -0.75rem 0 v.$space-md;
+}
+
+.lead-paragraph {
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+  line-height: 1.7;
+  color: v.$color-text-body;
+  max-width: 65ch;
+  margin: 0 0 1.25rem;
+}
+
+.card-title {
+  font-family: v.$font-heading;
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: v.$color-text-main;
+  margin: 0 0 0.65rem;
+  letter-spacing: 0.01em;
+}
+
+.card-subtitle {
+  font-family: v.$font-heading;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: v.$color-primary;
+  margin: 0 0 0.75rem;
+}
+
+.body-text {
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: v.$color-text-body;
+  margin: 0 0 0.85rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Metadatos limpios sin pills (separados tipográficamente con "·")
+.meta-line {
+  font-family: v.$font-mono;
+  font-size: 0.82rem;
+  color: v.$color-text-muted;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+
+  .meta-accent {
+    color: v.$color-primary;
+    font-weight: 500;
+  }
+}
+
+.location-data {
+  font-size: 0.95rem;
+  color: v.$color-text-body;
+  margin: 0 0 0.6rem;
+
+  strong {
+    color: v.$color-text-main;
+    font-weight: 600;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Números tabulares en métricas y años
+.tabular-metric {
+  font-family: v.$font-mono;
+  font-variant-numeric: tabular-nums;
+}

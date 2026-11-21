@@ -1,0 +1,147 @@
+// =============================================================================
+// PARTIAL: scss/layout/_header.scss
+// =============================================================================
+// Estilado integral del <header> semántico y la Navbar responsiva de Bootstrap
+// desde SCSS (criterio obligatorio de rúbrica). Incluye fondo de circuito
+// tecnológico, borde inferior de acento y personalización del menú hamburguesa.
+// =============================================================================
+
+@use '../utilities/variables' as v;
+@use '../utilities/mixins' as m;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.main-header.navbar {
+  background-color: rgba(v.$color-bg-base, 0.94);
+  background-image:
+    linear-gradient(rgba(v.$color-bg-base, 0.84), rgba(v.$color-bg-base, 0.95)),
+    url('../assets/header-circuit.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(v.$color-primary, 0.55);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  padding: 0.65rem 0;
+
+  .container-xl {
+    @include m.flex-layout(row, space-between, center, 1rem);
+    flex-wrap: wrap;
+  }
+}
+
+.brand-container {
+  @include m.flex-layout(row, flex-start, center, 0.7rem);
+  text-decoration: none;
+  color: v.$color-text-main;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 0;
+  margin-right: 0;
+  @include m.transicion((opacity, transform), 180ms);
+
+  &:hover {
+    color: v.$color-text-main;
+    opacity: 0.92;
+  }
+
+  &:focus-visible {
+    @include m.focus-ring(2px, 0.6);
+    border-radius: v.$radius-sm;
+  }
+}
+
+.brand-logo {
+  height: 41.8px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(v.$color-primary, 0.35));
+
+  @include m.respond-up('md') {
+    height: 46.2px;
+  }
+}
+
+.brand-text-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.brand-title {
+  font-family: v.$font-heading;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: v.$color-text-main;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+
+  @include m.respond-up('md') {
+    font-size: 1.22rem;
+  }
+}
+
+a.navbar-brand.brand-container .brand-text-group .brand-subtitle {
+  font-family: v.$font-body;
+  font-size: 15px !important;
+  color: v.$color-text-muted;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  margin-top: 0.1rem;
+}
+
+// Botón hamburguesa de Bootstrap personalizado desde SCSS
+.custom-toggler.navbar-toggler {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid rgba(v.$color-primary, 0.7);
+  background-color: rgba(v.$color-primary, 0.08);
+  border-radius: v.$radius-sm;
+  padding: 0.4rem 0.65rem;
+  @include m.transicion((background-color, border-color, transform), 180ms);
+
+  &:hover {
+    background-color: rgba(v.$color-primary, 0.18);
+    border-color: v.$color-primary;
+  }
+
+  &:focus,
+  &:focus-visible {
+    @include m.focus-ring(3px, 0.55);
+  }
+}
+
+// Contenedor del menú colapsado en mobile
+.navbar-collapse {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid v.$color-border;
+
+  @include m.respond-up('lg') {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+.header-actions-zone {
+  margin-top: 0.85rem;
+  @include m.flex-layout(row, flex-start, center, 0.55rem);
+
+  .social-list {
+    justify-content: flex-start;
+  }
+
+  @include m.respond-up('lg') {
+    margin-top: 0;
+    justify-content: flex-start;
+    flex-shrink: 0;
+  }
+}

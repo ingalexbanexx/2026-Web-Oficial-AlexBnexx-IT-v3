@@ -1,0 +1,98 @@
+// =============================================================================
+// PARTIAL: scss/utilities/_mixins.scss
+// =============================================================================
+// Define mixins reutilizables CON PARÁMETROS (requisito obligatorio de rúbrica)
+// para responsividad (media queries), Flexbox, efectos de foco, variantes de
+// botones y animaciones nativas optimizadas.
+// =============================================================================
+
+@use 'sass:list';
+@use 'sass:map';
+@use 'variables' as v;
+
+// --- 1. Media Query Mobile-First con parámetro de breakpoint ---
+@mixin respond-up($breakpoint) {
+  $size: map.get(v.$breakpoints, $breakpoint);
+  @if $size != null {
+    @media (min-width: $size) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+// --- 2. Contenedor Flexbox configurable con parámetros ---
+@mixin flex-layout($direction: row, $justify: flex-start, $align: center, $gap: 0.75rem) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+// --- 3. Resplandor sutil de acento para estados de foco o elevación ---
+@mixin accent-glow($blur: 18px, $opacity: 0.25, $color: v.$color-primary) {
+  box-shadow: 0 6px $blur rgba($color, $opacity);
+}
+
+// --- 4. Anillo de foco accesible para navegación por teclado ---
+@mixin focus-ring($width: 3px, $opacity: 0.45, $color: v.$color-primary) {
+  outline: none;
+  box-shadow: 0 0 0 $width rgba($color, $opacity);
+}
+
+// --- 5. Variante parametrizada de botones ---
+@mixin button-variant($bg, $text, $border, $hover-bg, $hover-text) {
+  background-color: $bg;
+  color: $text;
+  border: 1px solid $border;
+
+  &:hover {
+    background-color: $hover-bg;
+    color: $hover-text;
+    border-color: $hover-bg;
+    transform: translateY(-2px);
+    @include accent-glow(16px, 0.28);
+  }
+
+  &:focus-visible {
+    @include focus-ring(3px, 0.55);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+// --- 6. Transición múltiple optimizada (solo compositor y color) ---
+@mixin transicion($propiedades: (transform, opacity, border-color), $duracion: 200ms) {
+  $lista: ();
+  @each $prop in $propiedades {
+    $lista: list.append($lista, #{$prop} $duracion cubic-bezier(0.16, 1, 0.3, 1), comma);
+  }
+  transition: $lista;
+}
+
+// --- 7. Elevación interactiva suave para tarjetas ---
+@mixin elevar($desplazamiento-y: -4px, $escala: 1.01) {
+  @include transicion((transform, border-color, box-shadow), 200ms);
+
+  &:hover {
+    transform: translateY($desplazamiento-y) scale($escala);
+  }
+}
+
+// --- 8. Aplicación parametrizada de animación @keyframes ---
+@mixin animar($nombre, $duracion: 0.7s, $retraso: 0s, $iteraciones: 1, $timing: ease-out) {
+  animation: $nombre $duracion $timing $retraso $iteraciones both;
+}
+
+// --- 9. Accesibilidad: respeta la preferencia de movimiento reducido ---
+@mixin sin-movimiento {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

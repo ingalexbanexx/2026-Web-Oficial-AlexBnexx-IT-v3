@@ -1,0 +1,83 @@
+// =============================================================================
+// PARTIAL: scss/components/_animations.scss
+// =============================================================================
+// Animaciones NATIVAS escritas en SCSS usando @keyframes, transition, bucle
+// @each y el mixin @include sin-movimiento para cumplir con accesibilidad
+// (prefers-reduced-motion). Se complementa con AOS (librería externa) en HTML.
+// =============================================================================
+
+@use '../utilities/variables' as v;
+@use '../utilities/mixins' as m;
+
+// --- 1. Keyframes nativos (únicamente propiedades compositor: transform/opacity) ---
+@keyframes entrada-suave {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulso-acento {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(v.$color-primary, 0.42);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(v.$color-primary, 0);
+  }
+}
+
+@keyframes flotar-sutil {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+// --- 2. Clases utilitarias que invocan el mixin parametrizado animar() ---
+.anim-entrada {
+  @include m.animar(entrada-suave, 0.65s, 0s, 1, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.anim-btn-pulso {
+  @include m.animar(pulso-acento, 2.8s, 0.4s, infinite, ease-in-out);
+}
+
+.anim-flotar {
+  @include m.animar(flotar-sutil, 5s, 0s, infinite, ease-in-out);
+}
+
+// --- 3. Retrasos escalonados generados dinámicamente con @each ---
+$retrasos: (
+  1: 0.08s,
+  2: 0.16s,
+  3: 0.24s,
+  4: 0.32s
+);
+
+@each $indice, $tiempo in $retrasos {
+  .anim-delay-#{$indice} {
+    animation-delay: $tiempo;
+  }
+}
+
+// --- 4. Accesibilidad: desactiva animaciones si el usuario prefiere movimiento reducido ---
+@include m.sin-movimiento {
+  .anim-entrada,
+  .anim-btn-pulso,
+  .anim-flotar,
+  .content-card,
+  .project-card,
+  .media-card {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

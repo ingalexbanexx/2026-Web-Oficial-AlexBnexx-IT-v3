@@ -1,0 +1,75 @@
+// =============================================================================
+// PARTIAL: scss/utilities/_placeholders.scss
+// =============================================================================
+// Define selectores placeholder (%) pensados exclusivamente para @extend
+// (requisito obligatorio de la rúbrica de SCSS avanzado).
+// Los placeholders NO generan CSS propio hasta que otro selector los extiende.
+// =============================================================================
+
+@use 'variables' as v;
+@use 'mixins' as m;
+
+// Base estructural compartida por todas las tarjetas del portafolio
+%card-surface {
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+  padding: v.$space-md;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+}
+
+// Base interactiva para tarjetas con hover y accesibilidad :focus-within
+%interactive-card {
+  @extend %card-surface;
+  @include m.elevar(-4px, 1);
+
+  &:hover {
+    background-color: v.$color-surface-elevated;
+    border-color: rgba(v.$color-primary, 0.65);
+    @include m.accent-glow(22px, 0.16);
+  }
+
+  &:focus-within {
+    border-color: v.$color-primary;
+    @include m.focus-ring(3px, 0.35);
+  }
+}
+
+// Base tipográfica para encabezados de sección con línea inferior sutil
+%section-heading-base {
+  font-family: v.$font-heading;
+  color: v.$color-text-main;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid v.$color-border;
+}
+
+// Base compartida por todos los botones del sitio (padding 2:1 horizontal/vertical)
+%btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.65rem 1.4rem;
+  border-radius: v.$radius-sm;
+  font-family: v.$font-body;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  @include m.transicion((background-color, color, border-color, transform, box-shadow), 180ms);
+}
+
+// Marco multimedia reutilizable para figuras e imágenes destacadas
+%media-frame {
+  background-color: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+  overflow: hidden;
+  margin: 0;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.42);
+}

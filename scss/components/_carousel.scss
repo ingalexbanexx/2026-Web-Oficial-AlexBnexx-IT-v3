@@ -1,0 +1,125 @@
+// =============================================================================
+// PARTIAL: scss/components/_carousel.scss
+// =============================================================================
+// Personalización completa del componente Bootstrap Carousel desde SCSS
+// para sostener la identidad visual oscura y garantizar contraste legible.
+// =============================================================================
+
+@use '../utilities/variables' as v;
+@use '../utilities/mixins' as m;
+
+.custom-carousel {
+  border-radius: v.$radius-md;
+  overflow: hidden;
+  border: 1px solid v.$color-border;
+  background-color: v.$color-surface;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.52);
+
+  .carousel-item {
+    position: relative;
+    background-color: v.$color-bg-base;
+
+    // Scrim degradado para garantizar contraste >= 4.5:1 en cualquier foto
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(v.$color-bg-base, 0.92) 0%,
+        rgba(v.$color-bg-base, 0.48) 48%,
+        rgba(v.$color-bg-base, 0.15) 100%
+      );
+      pointer-events: none;
+    }
+  }
+
+  .carousel-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    @include m.transicion((transform, filter), 400ms);
+
+    @include m.respond-up('md') {
+      height: 370px;
+    }
+
+    @include m.respond-up('lg') {
+      height: 440px;
+    }
+  }
+
+  &:hover .carousel-img {
+    transform: scale(1.02);
+  }
+
+  .custom-caption {
+    z-index: 2;
+    left: 6%;
+    right: 6%;
+    bottom: 2.25rem;
+    text-align: left;
+    background: rgba(v.$color-bg-base, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(v.$color-primary, 0.3);
+    border-radius: v.$radius-sm;
+    padding: 0.95rem 1.25rem;
+
+    @include m.respond-up('md') {
+      left: 10%;
+      right: 10%;
+      padding: 1.15rem 1.5rem;
+    }
+
+    h3 {
+      font-family: v.$font-heading;
+      color: v.$color-primary;
+      font-size: clamp(1rem, 1.8vw, 1.35rem);
+      margin-bottom: 0.35rem;
+    }
+
+    p {
+      font-family: v.$font-body;
+      font-size: 0.94rem;
+      color: v.$color-text-main;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+  }
+
+  .carousel-indicators {
+    z-index: 3;
+    margin-bottom: 0.75rem;
+
+    [data-bs-target] {
+      width: 28px;
+      height: 4px;
+      border-radius: 2px;
+      background-color: v.$color-text-muted;
+      opacity: 0.5;
+      @include m.transicion((opacity, background-color), 200ms);
+    }
+
+    .active,
+    [data-bs-target]:hover {
+      background-color: v.$color-primary;
+      opacity: 1;
+    }
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    z-index: 3;
+    width: 10%;
+    @include m.transicion((background-color), 200ms);
+
+    &:hover {
+      background-color: rgba(v.$color-bg-base, 0.35);
+    }
+
+    &:focus-visible {
+      @include m.focus-ring(2px, 0.8);
+    }
+  }
+}
