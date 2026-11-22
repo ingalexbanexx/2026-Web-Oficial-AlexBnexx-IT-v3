@@ -1071,6 +1071,16 @@ a.navbar-brand.brand-container .brand-text-group .brand-subtitle {
   }
 }
 
+.media-card {
+  overflow: hidden;
+}
+.media-card .media-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .hub-grid-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

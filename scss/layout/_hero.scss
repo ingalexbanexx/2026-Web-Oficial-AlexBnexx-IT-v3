@@ -41,3 +41,14 @@
     }
   }
 }
+
+.media-card {
+  overflow: hidden; // Asegura que el video respete los border-radius de la tarjeta
+  
+  .media-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // Evita que el video se estire o deje franjas negras
+    display: block; // Elimina un pequeño espacio blanco inferior típico de etiquetas inline
+  }
+}
