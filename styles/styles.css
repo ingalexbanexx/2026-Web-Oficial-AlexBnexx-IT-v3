@@ -317,13 +317,22 @@ ol {
 }
 
 .hero-actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: minmax(0, 260px);
+  justify-content: center;
   align-items: center;
   gap: 0.85rem;
-  flex-wrap: wrap;
+  width: 100%;
   margin-top: 1.5rem;
+}
+@media (min-width: 576px) {
+  .hero-actions {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 195px));
+  }
+}
+.hero-actions .custom-btn {
+  width: 100%;
+  padding-inline: 1rem;
 }
 
 .content-card,
@@ -811,7 +820,7 @@ ol {
 }
 
 .brand-logo {
-  height: 38px;
+  height: 41.8px;
   width: auto;
   object-fit: contain;
   flex-shrink: 0;
@@ -819,13 +828,20 @@ ol {
 }
 @media (min-width: 768px) {
   .brand-logo {
-    height: 42px;
+    height: 46.2px;
   }
+}
+
+.brand-text-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
 }
 
 .brand-title {
   font-family: "Orbitron", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   font-weight: 700;
   color: #f1f5f9;
   letter-spacing: 0.06em;
@@ -833,8 +849,17 @@ ol {
 }
 @media (min-width: 768px) {
   .brand-title {
-    font-size: 1.25rem;
+    font-size: 1.22rem;
   }
+}
+
+a.navbar-brand.brand-container .brand-text-group .brand-subtitle {
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px !important;
+  color: #94a3b8;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  margin-top: 0.1rem;
 }
 
 .custom-toggler.navbar-toggler {
@@ -874,12 +899,15 @@ ol {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.55rem;
+}
+.header-actions-zone .social-list {
+  justify-content: flex-start;
 }
 @media (min-width: 992px) {
   .header-actions-zone {
     margin-top: 0;
-    justify-content: flex-end;
+    justify-content: flex-start;
     flex-shrink: 0;
   }
 }
@@ -932,6 +960,39 @@ ol {
 }
 .nav-list .nav-link.nav-link-active::after {
   transform: scaleX(1);
+}
+.nav-list .nav-link.nav-home-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 40px;
+  padding: 0.4rem 0.65rem;
+  color: #00d8f5;
+  border: 1px solid rgba(0, 216, 245, 0.45);
+  background-color: rgba(0, 216, 245, 0.08);
+  box-shadow: 0 0 10px rgba(0, 216, 245, 0.28), inset 0 0 8px rgba(0, 216, 245, 0.16);
+  transition: color 180ms cubic-bezier(0.16, 1, 0.3, 1), background-color 180ms cubic-bezier(0.16, 1, 0.3, 1), border-color 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1), transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-list .nav-link.nav-home-link i {
+  font-size: 1.15rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 6px rgba(0, 216, 245, 0.8));
+}
+.nav-list .nav-link.nav-home-link::after {
+  display: none;
+}
+.nav-list .nav-link.nav-home-link:hover, .nav-list .nav-link.nav-home-link.nav-link-active {
+  color: #4ce8ff;
+  border-color: #00d8f5;
+  background-color: rgba(0, 216, 245, 0.18);
+  box-shadow: 0 0 16px rgba(0, 216, 245, 0.55), inset 0 0 10px rgba(0, 216, 245, 0.3);
+}
+.nav-list .nav-link.nav-home-link:hover i, .nav-list .nav-link.nav-home-link.nav-link-active i {
+  filter: drop-shadow(0 0 10px rgba(76, 232, 255, 0.95));
+}
+.nav-list .nav-link.nav-home-link:hover {
+  transform: translateY(-1px);
 }
 
 .section-block {
@@ -1129,7 +1190,26 @@ ol {
 }
 
 .contact-info-card {
-  gap: 0.75rem;
+  justify-content: flex-start;
+  gap: 1.1rem;
+}
+
+.contact-info-top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.contact-info-top .location-data {
+  margin-bottom: 0;
+}
+
+.contact-map-wrapper {
+  flex: 1 1 auto;
+  min-height: 250px;
+}
+.contact-map-wrapper .map-frame {
+  min-height: 250px;
+  height: 100%;
 }
 
 .main-footer {
@@ -1167,9 +1247,10 @@ ol {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.7rem;
   text-decoration: none;
   color: #f1f5f9;
+  text-align: left;
   flex-shrink: 0;
 }
 
@@ -1179,3 +1260,4 @@ ol {
   margin: 0;
 }
 
+/*# sourceMappingURL=styles.css.map */
