@@ -146,14 +146,25 @@ El CSS compilado ya está en `styles/styles.css`. Si se modifican archivos SCSS,
 
 **URL pública:** pendiente de completar después del despliegue.
 
-## Estado y mejoras recomendadas
+## Sitio web publicado
 
-- [ ] Agregar `.gitignore` y dejar de versionar `node_modules/`.
-- [ ] Integrar el formulario de contacto con un servicio de recepción: actualmente declara `action="#"`.
-- [ ] Revisar navegación, enlaces y experiencia móvil.
-- [ ] Auditar accesibilidad, rendimiento y SEO.
-- [ ] Publicar el sitio en Vercel y registrar su URL.
-- [ ] Definir una licencia explícita para el código y los recursos.
+1. Publicamos en Vercel
+**Producción:** https://alexbanexx-it-v3.vercel.app/
+**Hosting:** Vercel
+**Repositorio:** GitHub
+**Rama de producción:** main
+
+2. Publicamos en DonWeb
+**Producción:** https://ingalexbanexx.site
+**Hosting:** DonWeb
+**Repositorio:** GitHub
+**Rama de producción:** main
+
+3. Publicamos en Netlify
+**Producción:** https://alexbanexx-it-v3.netlify.app/
+**Hosting:** Netifly
+**Repositorio:** GitHub
+**Rama de producción:** main
 
 ## Autor y contacto
 
